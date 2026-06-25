@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nike PH. Nike Philippines. Just Do It.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --black: #111111;
+      --white: #FFFFFF;
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E5E5E5;
+      --gray-300: #CACACB;
+      --gray-400: #9E9EA0;
+      --gray-500: #707072;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: Helvetica, Arial, sans-serif; color: var(--black); background: var(--white); }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; }
+
+    /* ── Top promo bar ── */
+    .promo-bar {
+      background: var(--gray-100);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.75rem;
+    }
+    .promo-bar a { color: var(--black); font-weight: 500; }
+    .promo-bar a:hover { color: var(--gray-500); }
+    .promo-divider { color: var(--gray-300); }
+
+    /* ── Main nav ── */
+    .main-nav {
+      background: var(--white);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      gap: 8px;
+    }
+    .nav-logo { width: 56px; flex-shrink: 0; }
+    .nav-logo img { width: 56px; height: auto; object-fit: contain; }
+    .nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--black);
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--gray-500); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-icon {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .nav-icon:hover { background: var(--gray-100); }
+    .nav-icon svg { width: 24px; height: 24px; }
+
+    /* ── Sub-nav tabs ── */
+    .sub-nav {
+      background: var(--white);
+      padding: 0 24px;
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--gray-200);
+      scrollbar-width: none;
+    }
+    .sub-nav::-webkit-scrollbar { display: none; }
+    .sub-tab {
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      white-space: nowrap;
+      color: var(--black);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .sub-tab:hover { border-bottom-color: var(--gray-300); }
+    .sub-tab.active { border-bottom-color: var(--black); font-weight: 500; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #F0D060;
+    }
+    .hero-img { width: 100%; aspect-ratio: 16/7; object-fit: cover; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 48px;
+      text-align: center;
+      background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFE500;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+    .hero-title .lego-badge {
+      color: #FFE500;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .hero-cta:hover { background: var(--gray-200); }
+    .hero-social {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .social-icon:hover { background: var(--white); }
+    .social-icon svg { width: 18px; height: 18px; }
+
+    /* ── Grid sections ── */
+    .four-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .four-grid .cell {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .four-grid .cell img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .four-grid .cell:hover img { transform: scale(1.03); }
+    .cell-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      padding: 32px 24px 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .section-title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .section-link {
+      font-size: 0.875rem;
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .section-link:hover { color: var(--gray-500); }
+
+    /* ── Product cards ── */
+    .product-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px 24px 40px;
+    }
+    .product-card {
+      cursor: pointer;
+    }
+    .product-card-img {
+      position: relative;
+      background: var(--gray-100);
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .product-card-img img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .product-card-img .product-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1/1;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .product-card:hover .product-card-img img,
+    .product-card:hover .product-card-img .product-img-placeholder { transform: scale(1.04); }
+    .product-card-heart {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .product-card:hover .product-card-heart { opacity: 1; }
+    .product-card-heart svg { width: 18px; height: 18px; }
+    .product-info { padding: 12px 4px 4px; }
+    .product-badge {
+      display: inline-block;
+      background: #EE0005;
+      color: white;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+    .product-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .product-sub {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+    .product-colors {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+    .product-price {
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    /* ── Full-width featured banner ── */
+    .featured-banner {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+    }
+    .featured-banner img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .featured-banner-content {
+      position: absolute;
+      bottom: 10%; left: 7%;
+      color: var(--white);
+    }
+    .featured-banner-content h2 {
+      font-size: clamp(1.5rem, 4vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    /* ── Trending ── */
+    .trending-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .trending-left { position: relative; overflow: hidden; }
+    .trending-left img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+    .trending-left-content {
+      position: absolute; bottom: 10%; left: 8%;
+      color: var(--white);
+    }
+    .trending-left-content h2 {
+      font-size: clamp(1.25rem, 3vw, 2.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .trending-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .trending-right .cell img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+
+    /* ── Shop by category ── */
+    .category-section {
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .category-section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .category-chips {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .chip {
+      display: inline-block;
+      border: 1.5px solid var(--black);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .chip:hover, .chip.active { background: var(--black); color: var(--white); }
+
+    /* ── Build-A-Shoe Room ── */
+    .shoe-room {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--gray-100);
+    }
+    .shoe-room-left {
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .shoe-room-left h2 {
+      font-size: clamp(1.5rem, 3vw, 2.75rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+    .shoe-room-left p {
+      font-size: 1rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 400px;
+    }
+    .shoe-room-right img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    /* ── Rating / sort bar ── */
+    .sort-bar {
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-200);
+    }
+    .sort-bar span { font-size: 0.875rem; color: var(--gray-500); }
+
+    /* ── Spotlight ── */
+    .spotlight {
+      padding: 48px 24px;
+      border-top: 1px solid var(--gray-200);
+    }
+    .spotlight-header {
+      font-size: clamp(2rem, 6vw, 5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+    .spotlight-grid {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .spotlight-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .spotlight-icon {
+      width: 72px; height: 72px;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: background 0.15s;
+    }
+    .spotlight-item:hover .spotlight-icon { background: var(--gray-200); }
+    .spotlight-icon img { width: 48px; height: 48px; object-fit: contain; }
+    .spotlight-label { font-size: 0.75rem; font-weight: 500; text-align: center; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 24px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid #28282A;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+    }
+    .footer-logo { width: 48px; }
+    .footer-legal {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social a {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #28282A;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .footer-social a:hover { background: var(--gray-500); }
+    .footer-social svg { width: 16px; height: 16px; fill: var(--white); }
+
+    /* ── Btn ── */
+    .btn-pill-white {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-pill-white:hover { background: var(--gray-200); }
+    .btn-pill-black {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-pill-black:hover { background: #28282A; }
+    .btn-pill-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--black);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--black);
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-pill-outline:hover { background: var(--black); color: var(--white); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .four-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-row { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px; }
+      .trending-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .shoe-room { grid-template-columns: 1fr; }
+      .nav-center { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP PROMO BAR ── -->
+  <div class="promo-bar">
+    <a href="#">Find Your Store</a>
+    <span class="promo-divider">|</span>
+    <a href="#">Help</a>
+    <span class="promo-divider">|</span>
+    <a href="#">Join Us</a>
+    <span class="promo-divider">|</span>
+    <a href="#">Sign In</a>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <a href="#">
+        <img src="brand_assets/swoosh.png" alt="Nike" style="width:44px;height:44px;object-fit:contain;background:#111;border-radius:4px;padding:4px;" />
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <a href="#" class="nav-link">New &amp; Featured</a>
+      <a href="#" class="nav-link">Men</a>
+      <a href="#" class="nav-link">Women</a>
+      <a href="#" class="nav-link">Kids</a>
+      <a href="#" class="nav-link">Sale</a>
+      <a href="#" class="nav-link">SNKRS</a>
+    </div>
+
+    <div class="nav-right">
+      <!-- Search -->
+      <div class="nav-icon" title="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <!-- Favorites -->
+      <div class="nav-icon" title="Favorites">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <!-- Bag -->
+      <div class="nav-icon" title="Bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── SUB NAV ── -->
+  <div class="sub-nav">
+    <div class="sub-tab active">New &amp; Featured</div>
+    <div class="sub-tab">Best Sellers</div>
+    <div class="sub-tab">Jordan</div>
+    <div class="sub-tab">Running</div>
+    <div class="sub-tab">Training</div>
+    <div class="sub-tab">Football</div>
+    <div class="sub-tab">Lifestyle</div>
+    <div class="sub-tab">Outdoor</div>
+    <div class="sub-tab">Skateboarding</div>
+    <div class="sub-tab">Basketball</div>
+    <div class="sub-tab">Sale</div>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <section class="hero" style="background: radial-gradient(ellipse at 70% 40%, #FFD700 0%, #E8B800 40%, #C89500 100%); min-height: 580px; display:flex; align-items:center;">
+    <!-- Right-side decorative collage blocks simulating product photography -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:55%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;opacity:0.85;">
+      <div style="background:#2B7A2B;"></div>
+      <div style="background:#1A5FA0;"></div>
+      <div style="background:#8B0000;"></div>
+      <div style="background:#E0A800;"></div>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(200,149,0,0.95) 30%, rgba(200,149,0,0.4) 60%, transparent 100%);"></div>
+    <!-- Text block -->
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:48px 7%;max-width:640px;">
+      <p style="font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:#111;font-weight:700;margin-bottom:12px;background:#FFE500;padding:3px 10px;border-radius:2px;display:inline-block;">Nike Football</p>
+      <h1 style="font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;color:#111111;line-height:0.88;text-transform:uppercase;letter-spacing:-0.025em;margin-bottom:10px;">
+        Nike Football<br/>
+        <span style="color:#FFFFFF;">x LEGO®</span><br/>
+        Collection
+      </h1>
+      <p style="font-size:1rem;color:rgba(0,0,0,0.65);margin-bottom:32px;font-weight:400;line-height:1.5;">Play the beautiful game, brick by brick.</p>
+      <div style="display:flex;gap:12px;">
+        <a href="#" class="btn-pill-black">Shop Now</a>
+        <a href="#" class="btn-pill-outline">Learn More</a>
+      </div>
+    </div>
+    <!-- Social icons -->
+    <div class="hero-social">
+      <div class="social-icon" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="#111"/>
+        </svg>
+      </div>
+      <div class="social-icon" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="#111" width="18" height="18">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </div>
+      <div class="social-icon" title="Twitter/X">
+        <svg viewBox="0 0 24 24" fill="#111" width="18" height="18">
+          <path d="M4 4l16 16M20 4L4 20" stroke="#111" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4-COLUMN ATHLETE GRID ── -->
+  <div class="four-grid">
+    <div class="cell" style="cursor:pointer;">
+      <div style="width:100%;aspect-ratio:1/1;background:#2D2D2D;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);"></div>
+      <div class="cell-label">@player_one</div>
+    </div>
+    <div class="cell" style="cursor:pointer;">
+      <div style="width:100%;aspect-ratio:1/1;background:#1A3A6A;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);"></div>
+      <div class="cell-label">@player_two</div>
+    </div>
+    <div class="cell" style="cursor:pointer;">
+      <div style="width:100%;aspect-ratio:1/1;background:#6A1A1A;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);"></div>
+      <div class="cell-label">@player_three</div>
+    </div>
+    <div class="cell" style="cursor:pointer;">
+      <div style="width:100%;aspect-ratio:1/1;background:#1A5A1A;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);"></div>
+      <div class="cell-label">@player_four</div>
+    </div>
+  </div>
+
+  <!-- ── FEATURED SECTION ── -->
+  <div class="section-header" style="margin-top:8px;">
+    <h2 class="section-title">Featured</h2>
+    <a href="#" class="section-link">Shop All</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#F5F5F5;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Just In</span>
+        <div class="product-name">Nike Air Max 1 '86 OG</div>
+        <div class="product-sub">Men's Shoes</div>
+        <div class="product-colors">3 Colors</div>
+        <div class="product-price">₱8,595</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#EBEBEB;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Nike Dunk Low Retro</div>
+        <div class="product-sub">Men's Shoes</div>
+        <div class="product-colors">5 Colors</div>
+        <div class="product-price">₱5,495</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#E0E0E0;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Best Seller</span>
+        <div class="product-name">Nike Air Force 1 '07</div>
+        <div class="product-sub">Men's Shoes</div>
+        <div class="product-colors">1 Color</div>
+        <div class="product-price">₱4,695</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRENDING ── -->
+  <div class="section-header">
+    <h2 class="section-title">Trending</h2>
+    <a href="#" class="section-link">Shop All</a>
+  </div>
+  <div class="trending-grid" style="margin-top:16px;">
+    <div class="trending-left" style="cursor:pointer;">
+      <div style="width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#C8E830 0%,#A0C020 100%);"></div>
+      <div class="trending-left-content">
+        <h2>Kits of<br/>the Season</h2>
+        <a href="#" class="btn-pill-white" style="font-size:0.875rem;padding:12px 22px;">Shop Kits</a>
+      </div>
+    </div>
+    <div class="trending-right">
+      <div class="cell" style="cursor:pointer;">
+        <div style="width:100%;aspect-ratio:1/1;background:#D4E030;"></div>
+      </div>
+      <div class="cell" style="cursor:pointer;">
+        <div style="width:100%;aspect-ratio:1/1;background:#5090D0;"></div>
+      </div>
+      <div class="cell" style="cursor:pointer;">
+        <div style="width:100%;aspect-ratio:1/1;background:#FFB800;"></div>
+      </div>
+      <div class="cell" style="cursor:pointer;">
+        <div style="width:100%;aspect-ratio:1/1;background:#1A1A1A;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BUILD-A-SHOE ROOM ── -->
+  <div class="shoe-room" style="margin-top:0;">
+    <div class="shoe-room-left">
+      <p style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);margin-bottom:12px;font-weight:500;">Nike By You</p>
+      <h2>Build-A-Shoe<br/>Room</h2>
+      <p>Design your own pair with Nike By You — choose colors, materials, and personalizations to make it uniquely yours.</p>
+      <div style="display:flex;gap:12px;">
+        <a href="#" class="btn-pill-black">Customize Now</a>
+        <a href="#" class="btn-pill-outline">See Styles</a>
+      </div>
+    </div>
+    <div class="shoe-room-right">
+      <div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#E8E0F0 0%,#C8C0D8 100%);"></div>
+    </div>
+  </div>
+
+  <!-- ── SORT BAR ── -->
+  <div class="sort-bar">
+    <span>1,247 Products</span>
+    <div style="display:flex;gap:16px;align-items:center;">
+      <span style="font-size:0.875rem;color:var(--black);cursor:pointer;display:flex;align-items:center;gap:6px;">
+        Sort By
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+      <span style="font-size:0.875rem;color:var(--black);cursor:pointer;display:flex;align-items:center;gap:6px;">
+        Filter
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── MORE PRODUCTS ── -->
+  <div class="product-row" style="padding-top:24px;">
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#F5E5D0;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Nike ReactX Infinity Run 4</div>
+        <div class="product-sub">Women's Road Running Shoes</div>
+        <div class="product-colors">6 Colors</div>
+        <div class="product-price">₱7,995</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#D0E8F5;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Sale</span>
+        <div class="product-name">Nike Air Zoom Pegasus 40</div>
+        <div class="product-sub">Men's Road Running Shoes</div>
+        <div class="product-colors">4 Colors</div>
+        <div style="display:flex;gap:10px;align-items:baseline;">
+          <span class="product-price" style="color:#EE0005;">₱5,197</span>
+          <span style="font-size:0.875rem;color:var(--gray-400);text-decoration:line-through;">₱7,425</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-img">
+        <div class="product-img-placeholder" style="background:#E8D5F0;"></div>
+        <div class="product-card-heart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.75" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Nike Vomero 17</div>
+        <div class="product-sub">Women's Road Running Shoes</div>
+        <div class="product-colors">3 Colors</div>
+        <div class="product-price">₱8,995</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SHOP BY GENDER ── -->
+  <div class="category-section" style="border-top:1px solid var(--gray-200);padding:40px 24px;">
+    <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:24px;text-transform:none;">Shop by Category</h2>
+    <div class="category-chips">
+      <a href="#" class="chip active">All</a>
+      <a href="#" class="chip">Men</a>
+      <a href="#" class="chip">Women</a>
+      <a href="#" class="chip">Kids</a>
+      <a href="#" class="chip">Sale</a>
+    </div>
+  </div>
+
+  <!-- ── SPOTLIGHT ── -->
+  <div class="spotlight">
+    <div class="spotlight-header">Spotlight</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M2 22c2-4 6-7 14-7s10 3 14 5" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="16" cy="18" rx="14" ry="6" stroke="#111" stroke-width="1.5"/></svg>
+        </div>
+        <span class="spotlight-label">Shoes</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 4h12l2 6H6L8 4z" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/><rect x="4" y="10" width="20" height="14" rx="2" stroke="#111" stroke-width="1.5"/></svg>
+        </div>
+        <span class="spotlight-label">Tops &amp; T-Shirts</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 8h20v4l-4 12H8L4 12V8z" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/><line x1="14" y1="8" x2="14" y2="24" stroke="#111" stroke-width="1.5"/></svg>
+        </div>
+        <span class="spotlight-label">Shorts</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="10" width="20" height="14" rx="2" stroke="#111" stroke-width="1.5"/><path d="M10 10V7a4 4 0 0 1 8 0v3" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="spotlight-label">Bags &amp; Backpacks</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 16c0-6 4-10 10-10s10 4 10 10" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="16" width="24" height="5" rx="2.5" stroke="#111" stroke-width="1.5"/></svg>
+        </div>
+        <span class="spotlight-label">Hats &amp; Headwear</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 6c0-1 1.5-2 3-2s2 1 3 1 2-1 3-1 3 1 3 2v16a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V6z" stroke="#111" stroke-width="1.5"/></svg>
+        </div>
+        <span class="spotlight-label">Socks</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#111" stroke-width="1.5"/><path d="M14 8v6l4 2" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="spotlight-label">Running</span>
+      </div>
+      <div class="spotlight-item">
+        <div class="spotlight-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#111" stroke-width="1.5"/><path d="M8 10c2 1 6 4 6 4s4-3 6-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/><path d="M8 18c2-1 6-4 6-4s4 3 6 4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="spotlight-label">Football</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Find a Store</a>
+        <a href="#">Become a Member</a>
+        <a href="#">Send Us Feedback</a>
+        <a href="#">Student Discount</a>
+        <a href="#">Military Discount</a>
+        <a href="#">Government Discount</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Get Help</a>
+        <a href="#">Order Status</a>
+        <a href="#">Delivery</a>
+        <a href="#">Returns</a>
+        <a href="#">Payment Options</a>
+        <a href="#">Contact Us on Nike.com</a>
+        <a href="#">Contact Us on All Nike Apps</a>
+        <a href="#">How to Return</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Nike</a>
+        <a href="#">News</a>
+        <a href="#">Careers</a>
+        <a href="#">Investors</a>
+        <a href="#">Sustainability</a>
+      </div>
+      <div class="footer-col">
+        <h4>Promotions &amp; Discounts</h4>
+        <a href="#">Sale</a>
+        <a href="#">Discount Store</a>
+        <a href="#">Nike Member Days</a>
+        <a href="#">Student Discount</a>
+        <a href="#">Promo Codes</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <img src="brand_assets/swoosh.png" alt="Nike" style="width:32px;height:32px;object-fit:contain;" />
+        <span style="font-size:0.75rem;color:var(--gray-400);">© 2025 Nike, Inc. All Rights Reserved</span>
+      </div>
+      <div class="footer-social">
+        <a href="#" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/>
+          </svg>
+        </a>
+        <a href="#" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="white" width="16" height="16">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="#" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="white" width="16" height="16">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#111"/>
+          </svg>
+        </a>
+        <a href="#" title="Twitter">
+          <svg viewBox="0 0 24 24" fill="white" width="16" height="16">
+            <path d="M4 4l16 16M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-legal">
+        <a href="#" style="color:var(--gray-400);font-size:0.75rem;">Guides</a>
+        <a href="#" style="color:var(--gray-400);font-size:0.75rem;">Terms of Sale</a>
+        <a href="#" style="color:var(--gray-400);font-size:0.75rem;">Terms of Use</a>
+        <a href="#" style="color:var(--gray-400);font-size:0.75rem;">Nike Privacy Policy</a>
+        <a href="#" style="color:var(--gray-400);font-size:0.75rem;">Philippines</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
